@@ -156,7 +156,6 @@ const person1 = {
 //Enhancing object literals
 
 // shorthand property names
-
 const name = "Alice";
 const age = 28;
 const person = { 
