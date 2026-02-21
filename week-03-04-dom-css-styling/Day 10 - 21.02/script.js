@@ -29,3 +29,5 @@ output.innerText = "Hello world";
 
 const parent = document.querySelector("#test");
 console.log(parent.innerHTML);
+//output: Chào <strong>Thành</strong>! <span style="display: none;">(Đây là tin nhắn ẩn)</span>
+
