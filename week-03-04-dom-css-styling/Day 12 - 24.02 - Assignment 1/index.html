@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do Listst</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .italic{
+            font-style: italic;
+        }
+
+        .underline{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="heading" class="red italic">To-do Lists</h1>
+        <div class="input-group">
+            <input type="text" id="todo-input" placeholder="Việc cần làm ...">
+            <button id="add-btn">Add</button>
+        </div>
+        <ul id="todo-list"></ul>
+    <div class="footer">
+        <span id="todo-count">0 items left</span>
+        <div class="filters">
+            <button onclick="filterTodos('all')">All</button>
+            <button onclick="filterTodos('active')">Active</button>
+            <button onclick="filterTodos('completed')">Completed</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+</html>
