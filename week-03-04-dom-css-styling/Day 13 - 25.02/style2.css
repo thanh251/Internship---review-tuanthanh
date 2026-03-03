@@ -1,0 +1,67 @@
+/* GRID-COLUMN-START
+grid-column-start: dùng để xác định vị trí đường kẻ dọc (grid line) mà một phần tử sẽ bắt đầu.
+css grid tính theo đường kẻ biên; ko phải thứ tự ô
+grid-column-end tương tự, tính đường kẻ biên cuối cùng
+*START với END k nhất thiết phải hơn nhau.
++) Span đại diện cho số cột tiếp theo
+*/
+#garden {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+#water {
+grid-column-start: 3;
+}
+
+/*GRID-COLUMN
+grid-column có thể mix cả start với end cùng 1 lúc
+có dùng cả span được: grid-column: [vị trí bắt đầu] / span [số ô muốn chiếm];
+*/
+
+/* GRID-ROW
+TƯƠNG TỰ
+*/
+
+/*
+grid-area: grid-row-start / grid-column-start / grid-row-end/ grid-column-end
+*/
+
+
+/* ORDER
+order: thứ tự xuất hiện trong HTML
+Bạn có thể dùng order để thay đổi thứ tự hiển thị mà không cần sửa code HTML.
+Item nào có order lớn hơn sẽ đứng sau.
+Item nào có order nhỏ hơn (có thể dùng số âm) sẽ đứng trước.
+*/
+
+/* GRID-TEMPLATE
+grid-template-columns: 50% 20% 20% 20% 20%; cho biết độ rộng mỗi cột là bao nhiêu
+grid-template-rows: tương tự
+grid-template-columna nhận cả pixels, ems và mix chúng lại
+grid-template: grid-template: <rows> / <columns>;
+*/
+
+/* ĐƠN VỊ FR - Dùng để chia tỷ lệ thành phần
+1fr và 3fr, tổng là 4 phần. Cột đầu chiếm 1/4 (25%), cột sau chiếm 3/4 (75%).
+
+*/
+#garden {
+  display: grid;
+grid-template-columns: 1fr 5fr
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+#garden {
+  display: grid;
+grid-template: 60% / 200px
+}
+
+#water {
+  grid-column: 1;
+  grid-row: 1;
+/* LƯU Ý
+Nếu có 1 hàng đã xác định mà đi từ dưới lên: 50px 0 0 0 1fr (0 để đánh dấu)
+*/
+
