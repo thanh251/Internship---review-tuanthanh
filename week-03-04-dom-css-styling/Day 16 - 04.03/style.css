@@ -14,3 +14,27 @@ p {
     font-family: verdana;
     font-size: 20px;
 }
+
+h1 {
+  color: Tomato;
+}
+
+h2 {
+  color: #1e90ff;
+}
+
+p {
+  color: rgb(60,179,113);
+}
+div {
+  background: rgba(0, 128, 0, 0.3) /* Green background with 30% opacity */
+}
+body {
+  background-color: #ffffff;
+  background-image: url("img_tree.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+body1{
+    background: #ffffff url("img_tree.png") no-repeat right top;
+}
