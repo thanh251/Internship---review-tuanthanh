@@ -96,7 +96,7 @@ export const createPost = async (req: Request, res: Response) => {
                 title,
                 slug,
                 content,
-                published: published ?? false,
+                published: published ?? true,
                 authorId: req.userId as string,
                 ...(categoryId && {categoryId}),
                 ...(tagIds &&{

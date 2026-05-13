@@ -1,26 +1,28 @@
 import { Button } from '@/components/ui/button'
-
-// Import global state từ authStore để đọc trạng thái đăng nhập
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { currentUser, isAuthenticated, token } from '../stores/authStore'
+import { toast } from 'sonner'
 
-// onNavigate — props callback, dùng để chuyển "trang"
-// Vì chưa có Router, bạn dùng state để điều hướng
-// Component cha truyền hàm này vào, Navbar gọi khi bấm nút
 type NavbarProps = {
   onNavigate: (page: string) => void
 }
 
 function Navbar({ onNavigate }: NavbarProps) {
-
-  // Hàm đăng xuất, xoá token và user
   function handleLogout() {
     token.value = null
     currentUser.value = null
+    toast.success('Đã đăng xuất')
   }
 
   return (
     <nav className="bg-white border-b px-6 py-4 flex justify-between items-center">
-
       <h1
         className="text-xl font-bold cursor-pointer"
         onClick={() => onNavigate('home')}
@@ -29,34 +31,40 @@ function Navbar({ onNavigate }: NavbarProps) {
       </h1>
 
       <div className="flex items-center gap-3">
-
         {isAuthenticated.value ? (
-          <>
-            <span className="text-sm text-gray-600">
-              Xin chào, {currentUser.value?.name}
-            </span>
-            <Button variant="outline" size="sm" onClick={handleLogout}>
-              Đăng xuất
-            </Button>
-          </>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm">
+                {currentUser.value?.name} ▾
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuLabel className="text-xs text-gray-400 font-normal">
+                {currentUser.value?.email}
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => onNavigate('create')}>
+                Viết bài mới
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="text-red-500 focus:text-red-500 focus:bg-red-50"
+                onClick={handleLogout}
+              >
+                Đăng xuất
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         ) : (
           <>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onNavigate('login')}
-            >
+            <Button variant="outline" size="sm" onClick={() => onNavigate('login')}>
               Đăng nhập
             </Button>
-            <Button
-              size="sm"
-              onClick={() => onNavigate('register')}
-            >
+            <Button size="sm" onClick={() => onNavigate('register')}>
               Đăng ký
             </Button>
           </>
         )}
-
       </div>
     </nav>
   )

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import PostCard from './PostCard'
 import usePosts from '../hooks/usePosts'
-
+import { toast } from 'sonner'  
 import {posts, isLoading, error} from '../stores/blogStore'
 
 type PostListProps = {
@@ -30,9 +30,11 @@ function PostList({ onNavigate }: PostListProps){
 
             if (!res.ok) throw new Error('Xoá fail')
             posts.value=posts.value.filter(post => post.id !== postId)
+            toast.success('Đã xoá bài viết') 
         }
         catch (err: any){
             alert(err.message)
+            toast.error(err.message)
         }
     }
 

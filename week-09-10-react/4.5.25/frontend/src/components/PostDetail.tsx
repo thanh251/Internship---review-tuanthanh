@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { currentUser, isAuthenticated, token } from '../stores/authStore'
+import { toast } from 'sonner'
 
 type Comment = {
   id: string
@@ -82,6 +83,7 @@ function PostDetail({ postId, onNavigate }: PostDetailProps) {
       } : null)
 
       setNewComment('')
+      toast.success('Đã thêm comment') 
 
     } catch (err: any) {
       alert(err.message)
@@ -108,6 +110,7 @@ function PostDetail({ postId, onNavigate }: PostDetailProps) {
         ...prev,
         comments: prev.comments.filter(c => c.id !== commentId)
       } : null)
+      toast.success('Đã xoá comment')  
 
     } catch (err: any) {
       alert(err.message)

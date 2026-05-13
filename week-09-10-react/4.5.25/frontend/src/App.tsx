@@ -6,6 +6,7 @@ import { isAuthenticated } from './stores/authStore'
 import PostList from './components/PostList'
 import PostDetail from './components/PostDetail'
 import PostForm from './components/PostForm'
+import { Toaster } from '@/components/ui/sonner'
 
 type Page = 'home' | 'login' | 'register' | 'post' | 'create'
 function App (){
@@ -93,6 +94,7 @@ function App (){
             <main className='max-w 3xl mx-auto px-4 py-8'>
               {renderPage()}
             </main>
+            <Toaster richColors position="top-right" />
           </div>
         )
       }

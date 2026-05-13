@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { token } from '@/stores/authStore'
 import { posts } from '@/stores/blogStore'
+import { toast } from 'sonner'
 
 type PostFormData = {
   title: string
@@ -44,10 +45,12 @@ function PostForm({ onSuccess }: PostFormProps) {
 
       const newPost = await res.json()
       posts.value = [newPost, ...posts.value]
+      toast.success('đã đăng bài')
       onSuccess(newPost.id)
 
     } catch (err: any) {
       setServerError(err.message)
+      toast.error(err.message)
     }
   }
 
