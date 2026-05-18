@@ -24,3 +24,10 @@ app.use('/api', commentRouter)
 app.listen(PORT, () =>{
     console.log(`Server is running on port ${PORT}`)
 })
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://tên-app-của-bạn.vercel.app' // thêm sau khi có link Vercel
+  ],
+  credentials: true
+}))
