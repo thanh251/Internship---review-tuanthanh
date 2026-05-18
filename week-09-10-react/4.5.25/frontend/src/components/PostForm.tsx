@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { token } from '@/stores/authStore'
 import { posts } from '@/stores/blogStore'
 import { toast } from 'sonner'
-
+import { API_URL } from '@/lib/api'
 type PostFormData = {
   title: string
   content: string
@@ -29,7 +29,7 @@ function PostForm({ onSuccess }: PostFormProps) {
     try {
       setServerError('')
 
-      const res = await fetch('/api/posts', {
+      const res = await fetch(`${API_URL}/api/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

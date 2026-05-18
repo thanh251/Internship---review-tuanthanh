@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { currentUser, isAuthenticated, token } from '../stores/authStore'
 import { toast } from 'sonner'
+import { API_URL } from '@/lib/api'
 
 type Comment = {
   id: string
@@ -43,7 +44,7 @@ function PostDetail({ postId, onNavigate }: PostDetailProps) {
     setLoading(true)
     setError('')
 
-    fetch(`/api/posts/${postId}`)
+    fetch(`${API_URL}/api/posts/${postId}`)
       .then(res => {
         if (!res.ok) throw new Error('Không tìm thấy bài viết')
         return res.json()
@@ -63,7 +64,7 @@ function PostDetail({ postId, onNavigate }: PostDetailProps) {
     setSubmitting(true)
 
     try {
-      const res = await fetch(`/api/posts/${postId}/comments`, {
+      const res = await fetch(`${API_URL}//api/posts/${postId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -97,7 +98,7 @@ function PostDetail({ postId, onNavigate }: PostDetailProps) {
     if (!confirm('Xoá comment này?')) return
 
     try {
-      const res = await fetch(`/api/comments/${commentId}`, {
+      const res = await fetch(`${API_URL}/api/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token.value}`

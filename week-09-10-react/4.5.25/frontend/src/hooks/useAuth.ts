@@ -1,6 +1,6 @@
 // Import global state từ authStore
 import { currentUser, token } from '../stores/authStore'
-
+import { API_URL } from '@/lib/api'
 type LoginData = {
   email: string
   password: string
@@ -16,7 +16,7 @@ function useAuth() {
 
   // Hàm đăng nhập — gọi POST /api/auth/login
   async function login(data: LoginData) {
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -35,7 +35,7 @@ function useAuth() {
 
   // Hàm đăng ký — gọi POST /api/auth/register
   async function register(data: RegisterData) {
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

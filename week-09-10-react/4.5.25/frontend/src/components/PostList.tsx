@@ -4,7 +4,7 @@ import PostCard from './PostCard'
 import usePosts from '../hooks/usePosts'
 import { toast } from 'sonner'  
 import {posts, isLoading, error} from '../stores/blogStore'
-
+import { API_URL } from '@/lib/api'
 type PostListProps = {
     onNavigate: (page: string, postId?: string) => void
 }
@@ -21,7 +21,7 @@ function PostList({ onNavigate }: PostListProps){
         if (!confirm("Xoá k?")) return
 
         try{
-            const res = await fetch('/api/post/${postId}',{
+            const res = await fetch(`${API_URL}/api/post/${postId}`,{
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

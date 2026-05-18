@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
 import { posts, isLoading, error } from '../stores/blogStore'
 import { token } from '../stores/authStore'
+import { API_URL } from '@/lib/api'
+
 
 function usePosts() {
   useEffect(() => {
     isLoading.value = true
     error.value = ''
 
-    fetch('/api/posts?page=1&limit=20', {  
+    fetch(`${API_URL}/api/posts?page=1&limit=20`, {  
       headers: {
         'Authorization': `Bearer ${token.value}`
       }
